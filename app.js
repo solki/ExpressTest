@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 var app = express();
 
 // configure app
@@ -8,7 +9,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 
 // use middleware
-
+app.use(bodyParser());
 
 // define routes
 app.get('/', function(req, res) {
@@ -24,7 +25,10 @@ app.get('/', function(req, res) {
 	});
 });
 
-
+app.post('/add', function(req, res) {
+	var newItem = req.body.newItem;
+	console.log(newItem);
+})
 
 app.listen(1337, function() {
 	console.log('Server running at http://127.0.0.1:1337/');
